@@ -17,5 +17,7 @@ public interface ClientDao extends CrudRepository<Client, Long>{
 	List<Client> findByNameContaining(String name);
 	
 	List<Client> findByEmail(String email);
+	
+	List<Client> findByUser(String user);
 
 }
