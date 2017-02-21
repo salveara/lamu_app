@@ -4,6 +4,7 @@ import com.lamu.lamuApp.util.WebException;
 
 public class ClientBusiness {
 	
+	//Se comprueba que la contraseña sea minimo de 7 caracteres
 	public void CheckPassword(String password) throws WebException{
 		if(password.length() < 7){
 			WebException webEx = new WebException();
