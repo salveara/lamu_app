@@ -23,5 +23,7 @@ public interface SongDao extends CrudRepository<Song, Long> {
 	List<Song> findByTrackContaining(String track);
 
 	List<Song> findByYearContaining(String year);
+	
+	List<Song> findByUrl(String url);
 
 }

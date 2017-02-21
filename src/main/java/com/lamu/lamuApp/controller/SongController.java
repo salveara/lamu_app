@@ -14,14 +14,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lamu.lamuApp.business.SongBusiness;
 import com.lamu.lamuApp.dao.SongDao;
+import com.lamu.lamuApp.model.Client;
 import com.lamu.lamuApp.model.Song;
+import com.lamu.lamuApp.util.WebException;
 
 @RestController
 public class SongController {
 
 	@Autowired
 	SongDao songDao;
+	@Autowired
+	SongBusiness SongBusiness;
 
 	@RequestMapping(value = "/songs", method = RequestMethod.GET)
 	public @ResponseBody ResponseEntity<List<Song>> allSongs(
@@ -42,13 +47,26 @@ public class SongController {
 			@RequestParam(value = "genre", required = false) String genre,
 			@RequestParam(value = "track", required = false) String track,
 			@RequestParam(value = "year", required = false) String year) {
+		
 		if (url != null) {
-			System.out.println(year);
-			Song song = new Song(url, tittle, artist, album, genre, track, Integer.valueOf(year));
-			songDao.save(song);
-			return new ResponseEntity<Song>(song, HttpStatus.CREATED);
+			
+			try {
+				
+				SongBusiness.CheckDuplicateUrl(url);
+				
+				Song song = new Song(url, tittle, artist, album, genre, track, Integer.valueOf(year));
+				songDao.save(song);
+				return new ResponseEntity<Song>(song, HttpStatus.CREATED);
+				
+			} catch (WebException webEx) {
+				System.out.println(webEx.getTechnicalMessage());
+				//esto hay que cambiarlo por un mensaje de error!!
+				return new ResponseEntity<Song>(HttpStatus.BAD_REQUEST);
+			}
+			
 		} else {
 			return new ResponseEntity<Song>(HttpStatus.BAD_REQUEST);
 		}
+		
 	}
 }

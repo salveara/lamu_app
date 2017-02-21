@@ -43,6 +43,7 @@ public class ClientController {
 			@RequestParam(value = "name", required = false) String name,
 			@RequestParam(value = "email", required = false) String email,
 			@RequestParam(value = "phone", required = false) String phone) {
+		
 		if (user != null && password != null) {
 			
 			try {
