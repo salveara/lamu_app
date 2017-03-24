@@ -47,4 +47,8 @@ public class ClientBusiness {
 			throw webEx;
 		}
 	}
+	
+	public void SaveClient(Client client){
+		clientDao.save(client);
+	}
 }

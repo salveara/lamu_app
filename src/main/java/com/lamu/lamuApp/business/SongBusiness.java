@@ -26,4 +26,8 @@ public class SongBusiness {
 			
 		}
 	}
+	
+	public void SaveSong(Song song){
+		songDao.save(song);
+	}
 }

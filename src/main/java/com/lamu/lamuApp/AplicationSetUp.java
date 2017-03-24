@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.lamu.lamuApp.dao.ClientDao;
+import com.lamu.lamuApp.dao.EmployeeDao;
 import com.lamu.lamuApp.dao.MusicProducerDao;
 import com.lamu.lamuApp.dao.SongDao;
 import com.lamu.lamuApp.model.Client;
+import com.lamu.lamuApp.model.Employee;
 import com.lamu.lamuApp.model.MusicProducer;
 import com.lamu.lamuApp.model.Song;
 
@@ -21,6 +23,8 @@ public class AplicationSetUp {
 	SongDao songDao;
 	@Autowired
 	MusicProducerDao musicProducerDao;
+	@Autowired
+	EmployeeDao employeeDao;
 
 	@PostConstruct
 	public void setUp() {
@@ -35,5 +39,6 @@ public class AplicationSetUp {
 		songDao.save(new Song("www.mymusic/beat it", "beat it", "Michael Jackson", "this is it", "pop", "1", 1985));
 		songDao.save(new Song("www.mymusic/Like a prayer", "Like a prayer", "Madonna", "madonna", "pop", "0", 1998));
 		musicProducerDao.save(new MusicProducer("musicStore", "3165"));
+		employeeDao.save(new Employee("alice","123","umbrella"));
 	}
 }

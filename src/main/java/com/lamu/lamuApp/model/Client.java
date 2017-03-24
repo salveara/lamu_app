@@ -18,8 +18,11 @@ public class Client {
 	private String user;
 	@NotNull
 	private String password;
+	@NotNull
 	private String name;
+	@NotNull
 	private String email;
+	@NotNull
 	private String phone;
 
 	public Client(){};

@@ -4,7 +4,7 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.lamu.lamuApp.business.MainBusiness;
+import com.lamu.lamuApp.business.AutenticationBusiness;
 import com.lamu.lamuApp.util.WebException;
 import com.vaadin.event.ShortcutAction.KeyCode;
 import com.vaadin.navigator.View;
@@ -27,12 +27,12 @@ public class AutenticationView extends VerticalLayout implements View{
 	public static final String VIEW_NAME = "";
 
 	TextField txtUser;
+	TextField txtClient;
     PasswordField txtPassword;
     Button btnLogin;
-    ComboBox<String> cbxUserType;
     
     @Autowired
-	MainBusiness mainBusiness;
+	AutenticationBusiness autenticationBusiness;
     
     @PostConstruct
     void init() {
@@ -44,20 +44,16 @@ public class AutenticationView extends VerticalLayout implements View{
 		txtPassword.setWidth("300px");
 		txtPassword.setRequiredIndicatorVisible(true);
 		
-		cbxUserType = new ComboBox<>("Tipo de usuario:");
-		cbxUserType.setWidth("300px");
-		cbxUserType.setItems("Cliente", "Productor musical");
-		cbxUserType.setSelectedItem("Cliente");
-		cbxUserType.setRequiredIndicatorVisible(true);
-		cbxUserType.setEmptySelectionAllowed(false);
-		cbxUserType.setTextInputAllowed(false);
+		txtClient = new TextField("Empresa:");
+		txtClient.setWidth("300px");
+		txtClient.setRequiredIndicatorVisible(true);
 		
 		btnLogin = new Button("Login", this::loginButtonClick);
 		btnLogin.addStyleName(ValoTheme.BUTTON_PRIMARY);
 		btnLogin.setClickShortcut(KeyCode.ENTER);
 		
-		VerticalLayout fields = new VerticalLayout(txtUser, txtPassword, cbxUserType, btnLogin);
-        fields.setCaption("Por favor ingresa los datos para acceder a la aplicación");
+		VerticalLayout fields = new VerticalLayout(txtUser, txtPassword, txtClient, btnLogin);
+        fields.setCaption("Autenticación de Empleados)");
         fields.setComponentAlignment(btnLogin, Alignment.TOP_CENTER);
         fields.setSpacing(true);
         fields.setMargin(new MarginInfo(true, true, true, false));
@@ -81,14 +77,15 @@ public class AutenticationView extends VerticalLayout implements View{
     
     public void loginButtonClick(Button.ClickEvent e) {
     	
-        if (txtUser.isEmpty() && txtPassword.isEmpty()){
-       	 Notification.show("Ingrese usuario y contraseña");
+        if (txtUser.isEmpty() || txtPassword.isEmpty() || txtClient.isEmpty()){
+       	 Notification.show("Ingrese los datos requeridos");
        	 
         }else{
        	 
        	 try {
-				mainBusiness.checkPassword(txtUser.getValue(), txtPassword.getValue(), cbxUserType.getValue());
-				getUI().getNavigator().navigateTo(ClientView.VIEW_NAME);
+				autenticationBusiness.checkData(txtUser.getValue(), txtPassword.getValue(), txtClient.getValue());
+				Notification.show("Autenticación correcta");
+				//getUI().getNavigator().navigateTo(ClientView.VIEW_NAME);
 				
 			} catch (WebException webEx) {
 				

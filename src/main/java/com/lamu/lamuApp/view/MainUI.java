@@ -2,14 +2,17 @@ package com.lamu.lamuApp.view;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.lamu.lamuApp.business.MainBusiness;
+import com.lamu.lamuApp.business.AutenticationBusiness;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.spring.navigator.SpringViewProvider;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.themes.ValoTheme;
 
 @SpringUI
 public class MainUI extends UI {
@@ -17,27 +20,36 @@ public class MainUI extends UI {
     @Autowired
     private SpringViewProvider viewProvider;
     @Autowired
-	MainBusiness mainBusiness;
+	AutenticationBusiness autenticationBusiness;
     
 	@Override
 	protected void init(VaadinRequest request) {
-		
+		VerticalLayout uiLayout = new VerticalLayout();
 		setSizeFull();
-
-        VerticalLayout uiLayout = new VerticalLayout();
+		setContent(uiLayout);
+		
+		final CssLayout navigationBar = new CssLayout();
+		navigationBar.addComponent(createNavigationButton("Empleados", AutenticationView.VIEW_NAME));
+		navigationBar.addComponent(createNavigationButton("Crear cliente", ClientView.VIEW_NAME));
+		navigationBar.addComponent(createNavigationButton("Subir canciones", SongView.VIEW_NAME));
+        uiLayout.addComponent(navigationBar);
         uiLayout.setSizeFull();
-        
-        setContent(uiLayout);
         
         final Panel viewContainer = new Panel();
         viewContainer.setSizeFull();
         uiLayout.addComponent(viewContainer);
         uiLayout.setExpandRatio(viewContainer, 1.0f);
-
         
         Navigator navigator = new Navigator(this, viewContainer);
         navigator.addProvider(viewProvider);
         
 	}
+	
+	private Button createNavigationButton(String caption, final String viewName) {
+        Button button = new Button(caption);
+        button.addStyleName(ValoTheme.BUTTON_SMALL);
+        button.addClickListener(event -> getUI().getNavigator().navigateTo(viewName));
+        return button;
+    }
 	
 }
