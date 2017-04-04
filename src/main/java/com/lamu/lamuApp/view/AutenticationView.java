@@ -53,7 +53,7 @@ public class AutenticationView extends VerticalLayout implements View{
 		btnLogin.setClickShortcut(KeyCode.ENTER);
 		
 		VerticalLayout fields = new VerticalLayout(txtUser, txtPassword, txtClient, btnLogin);
-        fields.setCaption("Autenticación de Empleados)");
+        fields.setCaption("Autenticación de Empleados");
         fields.setComponentAlignment(btnLogin, Alignment.TOP_CENTER);
         fields.setSpacing(true);
         fields.setMargin(new MarginInfo(true, true, true, false));
