@@ -27,6 +27,19 @@ public class SongBusiness {
 		}
 	}
 	
+	public void CheckDuplicateTittleArtist(String tittle, String artist) throws WebException{
+		List<Song> list = songDao.findByTittle(tittle);
+		
+		for (Song song : list) {
+			if(song.getArtist().equals(artist)){
+				WebException webEx = new WebException();
+				webEx.setUserMessage("El titulo y el artista ya se encuentran registrados");
+				webEx.setTechnicalMessage("song.getArtist().equals(artist) es verdadero");
+				throw webEx;
+			}
+		}
+	}
+	
 	public void SaveSong(Song song){
 		songDao.save(song);
 	}

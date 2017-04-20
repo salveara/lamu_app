@@ -25,6 +25,24 @@ public class ClientBusiness {
 		
 	}
 	
+	public void CheckUser(String user) throws WebException{
+		if(user.length() < 3){
+			WebException webEx = new WebException();
+			webEx.setUserMessage("El usuario debe ser de minimo 3 caracteres");
+			webEx.setTechnicalMessage("user.lenght menor a 3 caracteres");
+			throw webEx;
+		}
+	}
+	
+	public void CheckPhone(String phone) throws WebException{
+		if(phone.length() < 7){
+			WebException webEx = new WebException();
+			webEx.setUserMessage("Número de telefono no valido");
+			webEx.setTechnicalMessage("phone.lenght menor a 7 caracteres");
+			throw webEx;
+		}
+	}
+	
 	public void CheckDuplicateEmail(String email) throws WebException{
 		List<Client> list = clientDao.findByEmail(email);
 
@@ -47,6 +65,7 @@ public class ClientBusiness {
 			throw webEx;
 		}
 	}
+	
 	
 	public void SaveClient(Client client){
 		clientDao.save(client);
