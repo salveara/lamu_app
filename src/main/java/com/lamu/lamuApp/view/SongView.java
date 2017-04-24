@@ -49,6 +49,7 @@ public class SongView extends VerticalLayout implements View{
 		
 		txtArtist = new TextField("Artista:");
 		txtArtist.setWidth("300px");
+		txtArtist.setRequiredIndicatorVisible(true);
 		
 		txtAlbum = new TextField("Album:");
 		txtAlbum.setWidth("300px");
@@ -66,7 +67,7 @@ public class SongView extends VerticalLayout implements View{
 		btnUpload.addStyleName(ValoTheme.BUTTON_PRIMARY);
 		btnUpload.setClickShortcut(KeyCode.ENTER);
 		
-		VerticalLayout fields = new VerticalLayout(txtTittle, txtUrl, txtArtist, txtGenre, txtTrack, txtYear, btnUpload);
+		VerticalLayout fields = new VerticalLayout(txtTittle, txtUrl, txtArtist, txtAlbum, txtGenre, txtTrack, txtYear, btnUpload);
         fields.setCaption("Subir pista");
         fields.setComponentAlignment(btnUpload, Alignment.TOP_CENTER);
         fields.setSpacing(true);
@@ -90,8 +91,8 @@ public class SongView extends VerticalLayout implements View{
     
     public void uploadButtonClick(Button.ClickEvent e) {
     	
-    	if(txtTittle.isEmpty() || txtUrl.isEmpty()){
-    		Notification.show("Ingrese Url y Titulo");
+    	if(txtTittle.isEmpty() || txtUrl.isEmpty() || txtArtist.isEmpty()){
+    		Notification.show("Los campos requeridos");
     	}else{
     		
     		String tittle = txtTittle.getValue();
@@ -100,11 +101,12 @@ public class SongView extends VerticalLayout implements View{
     		String artist = txtArtist.getValue();
     		String genre = txtGenre.getValue();
     		String track = txtTrack.getValue();
-    		Integer year = Integer.valueOf(txtYear.getValue());
+    		String year = txtYear.getValue();
     		
     		try {
 				//FALTA REALIZAR MAS VALIDACIONES
 				SongBusiness.CheckDuplicateUrl(url);
+				SongBusiness.CheckDuplicateTittleArtist(tittle, artist);
 				
 				Song song = new Song(url, tittle, artist, album, genre, track, year);
 				SongBusiness.SaveSong(song);

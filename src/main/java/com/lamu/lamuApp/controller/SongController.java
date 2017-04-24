@@ -54,7 +54,7 @@ public class SongController {
 				
 				SongBusiness.CheckDuplicateUrl(url);
 				
-				Song song = new Song(url, tittle, artist, album, genre, track, Integer.valueOf(year));
+				Song song = new Song(url, tittle, artist, album, genre, track, year);
 				songDao.save(song);
 				return new ResponseEntity<Song>(song, HttpStatus.CREATED);
 				

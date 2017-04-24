@@ -100,6 +100,8 @@ public class ClientView extends VerticalLayout implements View{
     			//Falta realizar mas validaciones
     			
 				clientBusiness.CheckPassword(password);
+				clientBusiness.CheckUser(user);
+				clientBusiness.CheckPhone(phone);
 				clientBusiness.CheckDuplicateEmail(email);
 				clientBusiness.CheckDuplicateUser(user);
 				

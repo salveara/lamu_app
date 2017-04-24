@@ -23,14 +23,14 @@ public class Song {
 	private String album;
 	private String genre;
 	private String track;
-	private int year;
+	private String year;
 	
 	
 	public Song() {
 		super();
 	}
 
-	public Song(String url, String tittle, String artist, String album, String genre, String track, int year) {
+	public Song(String url, String tittle, String artist, String album, String genre, String track, String year) {
 		super();
 		this.url = url;
 		this.tittle = tittle;
@@ -77,10 +77,10 @@ public class Song {
 	public void setTrack(String track) {
 		this.track = track;
 	}
-	public int getYear() {
+	public String getYear() {
 		return year;
 	}
-	public void setYear(int year) {
+	public void setYear(String year) {
 		this.year = year;
 	}
 	
