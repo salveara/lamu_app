@@ -1,4 +1,4 @@
-package com.lamu.lamuApp;
+package com.lamu.lamuApp.util;
 
 import javax.annotation.PostConstruct;
 
@@ -39,6 +39,6 @@ public class AplicationSetUp {
 		songDao.save(new Song("www.mymusic/beat it", "beat it", "Michael Jackson", "this is it", "pop", "1", "1985"));
 		songDao.save(new Song("www.mymusic/Like a prayer", "Like a prayer", "Madonna", "madonna", "pop", "0", "1998"));
 		musicProducerDao.save(new MusicProducer("musicStore", "3165"));
-		employeeDao.save(new Employee("alice","123","umbrella"));
+		employeeDao.save(new Employee("alice@hotmail.com","123","umbrella"));
 	}
 }

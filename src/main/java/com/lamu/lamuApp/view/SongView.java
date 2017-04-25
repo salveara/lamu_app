@@ -107,6 +107,8 @@ public class SongView extends VerticalLayout implements View{
 				//FALTA REALIZAR MAS VALIDACIONES
 				SongBusiness.CheckDuplicateUrl(url);
 				SongBusiness.CheckDuplicateTittleArtist(tittle, artist);
+				SongBusiness.CheckTrackOnlyContainsNumbers(track);
+				SongBusiness.CheckYearFormat(year);
 				
 				Song song = new Song(url, tittle, artist, album, genre, track, year);
 				SongBusiness.SaveSong(song);

@@ -98,12 +98,15 @@ public class ClientView extends VerticalLayout implements View{
     			String phone = txtPhone.getValue();
     			
     			//Falta realizar mas validaciones
-    			
+				clientBusiness.CheckSpecialCharacter(user);
+				clientBusiness.CheckSpecialCharacter(name);
+				clientBusiness.CheckEmail(email);
 				clientBusiness.CheckPassword(password);
 				clientBusiness.CheckUser(user);
 				clientBusiness.CheckPhone(phone);
 				clientBusiness.CheckDuplicateEmail(email);
 				clientBusiness.CheckDuplicateUser(user);
+
 				
 				Client client = new Client(user, password, name, email, phone);
 				clientBusiness.SaveClient(client);

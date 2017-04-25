@@ -2,6 +2,7 @@ package com.lamu.lamuApp.business;
 
 import java.util.List;
 
+import jdk.internal.org.objectweb.asm.tree.TryCatchBlockNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,7 +40,32 @@ public class SongBusiness {
 			}
 		}
 	}
-	
+
+	public void CheckTrackOnlyContainsNumbers(String track) throws WebException {
+		try {
+			Integer.valueOf(track);
+		} catch (Exception e) {
+			WebException webEx = new WebException();
+			webEx.setUserMessage("El track de la cancion solo debe contener caracteres numericos");
+			webEx.setTechnicalMessage("Track can not be parsed to int");
+			throw webEx;
+		}
+	}
+
+	public void CheckYearFormat(String year) throws WebException {
+		try {
+			Integer.valueOf(year);
+			if (year.length() != 4) {
+				throw new WebException();
+			}
+		} catch (Exception e) {
+			WebException webEx = new WebException();
+			webEx.setUserMessage("El año de la cancion debe estar en formato aaaa");
+			webEx.setTechnicalMessage("The format of the year is not yyyy");
+			throw webEx;
+		}
+	}
+
 	public void SaveSong(Song song){
 		songDao.save(song);
 	}
