@@ -13,94 +13,97 @@ import com.lamu.lamuApp.util.WebException;
 
 @Service
 public class ClientBusiness {
-	
-	@Autowired
-	private ClientDao clientDao;
 
-	public void CheckPassword(String password) throws WebException{
-		if(password.length() < 7){
-			WebException webEx = new WebException();
-			webEx.setUserMessage("La contraseña debe ser mayor de 7 caracteres");
-			webEx.setTechnicalMessage("password.lenght menor a 7 caracteres");
-			throw webEx;
-		}
-		Pattern pattern = Pattern.compile("^(?=.*[A-Z])(?=.*[0-9])[A-Z0-9]+$", Pattern.CASE_INSENSITIVE);
-		Matcher matcher = pattern.matcher(password);
-		if (!matcher.find()) {
-			WebException webEx = new WebException();
-			webEx.setUserMessage("La contraseña debe contener numeros y letras");
-			webEx.setTechnicalMessage("password does not contains numbers and letters");
-			throw webEx;
-		}
+    private ClientDao clientDao;
 
-	}
-	
-	public void CheckUser(String user) throws WebException{
-		if(user.length() < 3){
-			WebException webEx = new WebException();
-			webEx.setUserMessage("El usuario debe ser de minimo 3 caracteres");
-			webEx.setTechnicalMessage("user.lenght menor a 3 caracteres");
-			throw webEx;
-		}
-	}
-	
-	public void CheckPhone(String phone) throws WebException{
-		if(phone.length() < 7){
-			WebException webEx = new WebException();
-			webEx.setUserMessage("Número de telefono no valido");
-			webEx.setTechnicalMessage("phone.lenght menor a 7 caracteres");
-			throw webEx;
-		}
-	}
-	
-	public void CheckDuplicateEmail(String email) throws WebException{
-		List<Client> list = clientDao.findByEmail(email);
+    @Autowired
+    public ClientBusiness(ClientDao clientDao) {
+        this.clientDao = clientDao;
+    }
 
-		if(!list.isEmpty()){
-			WebException webEx = new WebException();
-			webEx.setUserMessage("El correo ya se encuentra registrado");
-			webEx.setTechnicalMessage("la lista clientDao.findByEmail(email) no está vacia");
-			throw webEx;
-			
-		}
-	}
-	
-	public void CheckDuplicateUser(String user) throws WebException{
-		List<Client> list = clientDao.findByUser(user);
+    public void CheckPassword(String password) throws WebException {
+        if (password.length() < 7) {
+            WebException webEx = new WebException();
+            webEx.setUserMessage("La contraseña debe ser mayor de 7 caracteres");
+            webEx.setTechnicalMessage("password.lenght menor a 7 caracteres");
+            throw webEx;
+        }
+        Pattern pattern = Pattern.compile("^(?=.*[A-Z])(?=.*[0-9])[A-Z0-9]+$", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(password);
+        if (!matcher.find()) {
+            WebException webEx = new WebException();
+            webEx.setUserMessage("La contraseña debe contener numeros y letras");
+            webEx.setTechnicalMessage("password does not contains numbers and letters");
+            throw webEx;
+        }
+    }
 
-		if(!list.isEmpty()){
-			WebException webEx = new WebException();
-			webEx.setUserMessage("El usuario ya se encuentra registrado");
-			webEx.setTechnicalMessage("la lista clientDao.findByUser(user) no está vacia");
-			throw webEx;
-		}
-	}
+    public void CheckUser(String user) throws WebException {
+        if (user.length() < 3) {
+            WebException webEx = new WebException();
+            webEx.setUserMessage("El usuario debe ser de minimo 3 caracteres");
+            webEx.setTechnicalMessage("user.lenght menor a 3 caracteres");
+            throw webEx;
+        }
+    }
 
-	public void CheckSpecialCharacter(String string) throws WebException {
-		Pattern pattern = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
-		Matcher matcher = pattern.matcher(string);
+    public void CheckPhone(String phone) throws WebException {
+        if (phone.length() < 7) {
+            WebException webEx = new WebException();
+            webEx.setUserMessage("Número de telefono no valido");
+            webEx.setTechnicalMessage("phone.lenght menor a 7 caracteres");
+            throw webEx;
+        }
+    }
 
-		if (matcher.find()) {
-			WebException webEx = new WebException();
-			webEx.setUserMessage("El usuario o su nombre no pueden contener caracteres especiales");
-			webEx.setTechnicalMessage("The user or name contains special characters");
-			throw webEx;
-		}
-	}
-	
-	public void SaveClient(Client client){
-		clientDao.save(client);
-	}
+    public void CheckDuplicateEmail(String email) throws WebException {
+        List<Client> list = clientDao.findByEmail(email);
 
-	public void CheckEmail(String email) throws WebException  {
-		Pattern pattern = Pattern.compile("^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$");
-		Matcher matcher = pattern.matcher(email);
+        if (!list.isEmpty()) {
+            WebException webEx = new WebException();
+            webEx.setUserMessage("El correo ya se encuentra registrado");
+            webEx.setTechnicalMessage("la lista clientDao.findByEmail(email) no está vacia");
+            throw webEx;
 
-		if (!matcher.find()) {
-			WebException webEx = new WebException();
-			webEx.setUserMessage("El correo electronico debe tener un formato valido");
-			webEx.setTechnicalMessage("The email does not have a correct format");
-			throw webEx;
-		}
-	}
+        }
+    }
+
+    public void CheckDuplicateUser(String user) throws WebException {
+        List<Client> list = clientDao.findByUser(user);
+
+        if (!list.isEmpty()) {
+            WebException webEx = new WebException();
+            webEx.setUserMessage("El usuario ya se encuentra registrado");
+            webEx.setTechnicalMessage("la lista clientDao.findByUser(user) no está vacia");
+            throw webEx;
+        }
+    }
+
+    public void CheckSpecialCharacter(String string) throws WebException {
+        Pattern pattern = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(string);
+
+        if (matcher.find()) {
+            WebException webEx = new WebException();
+            webEx.setUserMessage("El usuario o su nombre no pueden contener caracteres especiales");
+            webEx.setTechnicalMessage("The user or name contains special characters");
+            throw webEx;
+        }
+    }
+
+    public void CheckEmail(String email) throws WebException {
+        Pattern pattern = Pattern.compile("^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$");
+        Matcher matcher = pattern.matcher(email);
+
+        if (!matcher.find()) {
+            WebException webEx = new WebException();
+            webEx.setUserMessage("El correo electronico debe tener un formato valido");
+            webEx.setTechnicalMessage("The email does not have a correct format");
+            throw webEx;
+        }
+    }
+
+    public void SaveClient(Client client) {
+        clientDao.save(client);
+    }
 }

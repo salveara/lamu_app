@@ -1,6 +1,6 @@
 package com.lamu.lamuApp.view;
 
-import com.lamu.lamuApp.business.PasswordMailBusinness;
+import com.lamu.lamuApp.business.PasswordMailBusiness;
 import com.lamu.lamuApp.util.WebException;
 import com.vaadin.event.ShortcutAction;
 import com.vaadin.navigator.View;
@@ -25,7 +25,7 @@ public class PasswordMailView extends VerticalLayout implements View {
     Button btnEnviar;
 
     @Autowired
-    PasswordMailBusinness passwordMailBusinness;
+    PasswordMailBusiness passwordMailBusinness;
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent viewChangeEvent) {

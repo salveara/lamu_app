@@ -5,15 +5,18 @@ import com.lamu.lamuApp.model.Employee;
 import com.lamu.lamuApp.util.WebException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @Service
 public class AutenticationBusiness {
 
-    @Autowired
     private EmployeeDao employeeDao;
+
+    @Autowired
+    public AutenticationBusiness(EmployeeDao employeeDao) {
+        this.employeeDao = employeeDao;
+    }
 
     public void checkData(String givenUser, String givenPassword, String givenClient) throws WebException {
         List<Employee> lista = employeeDao.findByUser(givenUser);

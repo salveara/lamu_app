@@ -3,19 +3,21 @@ package com.lamu.lamuApp.business;
 import com.lamu.lamuApp.dao.EmployeeDao;
 import com.lamu.lamuApp.model.Employee;
 import com.lamu.lamuApp.util.WebException;
+import com.lamu.lamuApp.view.PasswordMailView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * Created by santi on 24/04/2017.
- */
 @Service
-public class PasswordMailBusinness {
+public class PasswordMailBusiness {
+
+    private EmployeeDao employeeDao;
 
     @Autowired
-    private EmployeeDao employeeDao;
+    public PasswordMailBusiness(EmployeeDao employeeDao) {
+        this.employeeDao = employeeDao;
+    }
 
     public void sendMail(String user) throws WebException {
         List<Employee> lista = employeeDao.findByUser(user);
