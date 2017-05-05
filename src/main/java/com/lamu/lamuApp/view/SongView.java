@@ -27,6 +27,7 @@ public class SongView extends VerticalLayout implements View {
     TextField txtTrack;
     TextField txtYear;
     Button btnUpload;
+    Label label;
 
     @Autowired
     SongBusiness SongBusiness;
@@ -60,8 +61,12 @@ public class SongView extends VerticalLayout implements View {
         btnUpload = new Button("Subir", this::uploadButtonClick);
         btnUpload.addStyleName(ValoTheme.BUTTON_PRIMARY);
         btnUpload.setClickShortcut(KeyCode.ENTER);
+        btnUpload.setId("btnUpload");
 
-        VerticalLayout fields = new VerticalLayout(txtTittle, txtUrl, txtArtist, txtAlbum, txtGenre, txtTrack, txtYear, btnUpload);
+        label = new Label();
+        label.setId("label");
+
+        VerticalLayout fields = new VerticalLayout(txtTittle, txtUrl, txtArtist, txtAlbum, txtGenre, txtTrack, txtYear, btnUpload, label);
         fields.setCaption("Subir pista");
         fields.setComponentAlignment(btnUpload, Alignment.TOP_CENTER);
         fields.setSpacing(true);
@@ -86,7 +91,8 @@ public class SongView extends VerticalLayout implements View {
     public void uploadButtonClick(Button.ClickEvent e) {
 
         if (txtTittle.isEmpty() || txtUrl.isEmpty() || txtArtist.isEmpty()) {
-            Notification.show("Los campos requeridos");
+            Notification.show("Llenar los campos requeridos");
+            label.setValue("Llenar los campos requeridos");
         } else {
 
             String tittle = txtTittle.getValue();
@@ -107,10 +113,12 @@ public class SongView extends VerticalLayout implements View {
                 Song song = new Song(url, tittle, artist, album, genre, track, year);
                 SongBusiness.SaveSong(song);
                 Notification.show("Canción subida con éxito");
+                label.setValue("Canción subida con éxito");
 
             } catch (WebException webEx) {
                 System.out.println(webEx.getTechnicalMessage());
                 Notification.show(webEx.getUserMessage());
+                label.setValue(webEx.getUserMessage());
             }
 
         }

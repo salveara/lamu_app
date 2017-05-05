@@ -8,7 +8,8 @@ public class AutenticationView {
     private WebDriver driver;
 
     public AutenticationView() {
-        ChromeBrowser setUp = new ChromeBrowser();
-        driver = setUp.getDriver();
+        ChromeBrowser chromeBrowser = new ChromeBrowser();
+        driver = chromeBrowser.getDriver();
+        driver.get("http://localhost:8090/");
     }
 }
