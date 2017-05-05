@@ -22,7 +22,7 @@ public class PasswordMailBusiness {
         List<Employee> lista = employeeDao.findByUser(user);
         if (!lista.isEmpty()) {
             Employee employee = lista.get(0);
-            String correo = employee.getUser();
+            String correo = employee.getEmail();
             //TODO send mail
         } else {
             WebException webEx = new WebException();

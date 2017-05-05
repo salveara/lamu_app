@@ -32,7 +32,7 @@ public class PasswordMailBusinessTest {
     @Test(expected = WebException.class)
     public void ifTheEmployeeEmailDoesNotExistThrowsError() throws WebException {
         List<Employee> employees = new ArrayList<>();
-        when(employeeDao.findByUser(employee.getUser())).thenReturn(employees);
-        passwordMailBusiness.sendMail(employee.getUser());
+        when(employeeDao.findByUser(employee.getEmail())).thenReturn(employees);
+        passwordMailBusiness.sendMail(employee.getEmail());
     }
 }

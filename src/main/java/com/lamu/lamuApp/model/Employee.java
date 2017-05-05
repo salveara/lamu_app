@@ -15,7 +15,7 @@ public class Employee {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	@NotNull
-	private String user;
+	private String Email;
 	@NotNull
 	private String password;
 	@NotNull
@@ -23,9 +23,9 @@ public class Employee {
 	
 	public Employee(){};
 	
-	public Employee(String user, String password, String client) {
+	public Employee(String Email, String password, String client) {
 		super();
-		this.user = user;
+		this.Email = Email;
 		this.password = password;
 		this.client = client;
 	}
@@ -38,12 +38,12 @@ public class Employee {
 		this.id = id;
 	}
 
-	public String getUser() {
-		return user;
+	public String getEmail() {
+		return Email;
 	}
 
-	public void setUser(String user) {
-		this.user = user;
+	public void setEmail(String email) {
+		this.Email = email;
 	}
 
 	public String getPassword() {
