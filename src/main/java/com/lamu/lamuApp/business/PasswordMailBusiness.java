@@ -18,8 +18,8 @@ public class PasswordMailBusiness {
         this.employeeDao = employeeDao;
     }
 
-    public void sendMail(String user) throws WebException {
-        List<Employee> lista = employeeDao.findByUser(user);
+    public void sendMail(String email) throws WebException {
+        List<Employee> lista = employeeDao.findByEmail(email);
         if (!lista.isEmpty()) {
             Employee employee = lista.get(0);
             String correo = employee.getEmail();

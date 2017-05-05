@@ -15,17 +15,17 @@ public class Employee {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	@NotNull
-	private String Email;
+	private String email;
 	@NotNull
 	private String password;
 	@NotNull
 	private String client;
 	
-	public Employee(){};
+	public Employee(){}
 	
 	public Employee(String Email, String password, String client) {
 		super();
-		this.Email = Email;
+		this.email = Email;
 		this.password = password;
 		this.client = client;
 	}
@@ -39,11 +39,11 @@ public class Employee {
 	}
 
 	public String getEmail() {
-		return Email;
+		return email;
 	}
 
 	public void setEmail(String email) {
-		this.Email = email;
+		this.email = email;
 	}
 
 	public String getPassword() {

@@ -19,7 +19,7 @@ public class AutenticationBusiness {
     }
 
     public void checkData(String givenUser, String givenPassword, String givenClient) throws WebException {
-        List<Employee> lista = employeeDao.findByUser(givenUser);
+        List<Employee> lista = employeeDao.findByEmail(givenUser);
         if (!lista.isEmpty()) {
             Employee employee = lista.get(0);
             if (!givenPassword.equals(employee.getPassword()) && !givenClient.equals(employee.getClient())) {

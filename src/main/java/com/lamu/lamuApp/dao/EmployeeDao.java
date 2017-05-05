@@ -8,5 +8,5 @@ import com.lamu.lamuApp.model.Employee;
 
 public interface EmployeeDao extends CrudRepository<Employee, Long>{
 	
-	List<Employee> findByUser(String user);
+	List<Employee> findByEmail(String email);
 }
