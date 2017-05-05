@@ -2,7 +2,6 @@ package com.lamu.lamuApp.business;
 
 import com.lamu.lamuApp.dao.ClientDao;
 import com.lamu.lamuApp.model.Client;
-import com.lamu.lamuApp.model.Employee;
 import com.lamu.lamuApp.util.WebException;
 import org.junit.Before;
 import org.junit.Test;
