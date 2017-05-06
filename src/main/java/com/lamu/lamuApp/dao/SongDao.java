@@ -28,4 +28,5 @@ public interface SongDao extends CrudRepository<Song, Long> {
 	
 	List<Song> findByTittle(String tittle);
 
+	//void delete(Long id);
 }

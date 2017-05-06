@@ -52,4 +52,8 @@ public class SongView {
     public String getResponseText() {
         return driver.findElement(By.id("label")).getText();
     }
+
+    public void closeDriver() {
+        driver.close();
+    }
 }
