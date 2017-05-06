@@ -6,11 +6,11 @@ import org.openqa.selenium.WebDriver;
 
 import java.util.concurrent.TimeUnit;
 
-public class SongView {
+public class SongUI {
 
     private WebDriver driver;
 
-    public SongView() {
+    public SongUI() {
         ChromeBrowser chromeBrowser = new ChromeBrowser();
         driver = chromeBrowser.getDriver();
         driver.get("http://localhost:8090/#!song");

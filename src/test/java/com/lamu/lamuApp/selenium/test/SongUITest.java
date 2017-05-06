@@ -1,23 +1,17 @@
 package com.lamu.lamuApp.selenium.test;
 
-import com.lamu.lamuApp.selenium.framework.view.SongView;
-import org.junit.After;
+import com.lamu.lamuApp.selenium.framework.view.SongUI;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 public class SongUITest {
 
-    SongView songView;
+    SongUI songView;
 
     @Before
     public void init() {
-        this.songView = new SongView();
-    }
-
-    @After
-    public void backToInicialState() {
-
+        this.songView = new SongUI();
     }
 
     @Test
@@ -277,7 +271,8 @@ public class SongUITest {
         Assert.assertEquals("Canción subida con éxito", result);
     }
 
-    @Test public void testCase19_requieredFieldAreNeccesaryAndANotRequiredFieldIsNot() {
+    @Test
+    public void testCase19_requieredFieldAreNeccesaryAndANotRequiredFieldIsNot() {
         songView.fillUrl("C:\\Users\\Casa\\Music\\Musica");
         songView.fillGenre("Pop");
         songView.fillTrack("5");
@@ -317,7 +312,7 @@ public class SongUITest {
     }
 
     @Test
-    public void testCase22_artisturlCanNotBeNumbers() {
+    public void testCase22_yearDoedNotMatchTheFormat() {
         songView.fillUrl("C:\\Users\\Casa\\Music\\Musica");
         songView.fillTittle("Hello");
         songView.fillArtist("Adele");

@@ -104,5 +104,6 @@ public class ClientBusiness {
 
     public void SaveClient(Client client) {
         clientDao.save(client);
+        clientDao.delete(client);
     }
 }

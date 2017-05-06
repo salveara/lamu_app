@@ -92,7 +92,6 @@ public class SongView extends VerticalLayout implements View {
     public void uploadButtonClick(Button.ClickEvent e) {
 
         if (txtTittle.isEmpty() || txtUrl.isEmpty() || txtArtist.isEmpty()) {
-            Notification.show("Llenar los campos requeridos");
             label.setValue("Llenar los campos requeridos");
             label.setVisible(true);
         } else {
@@ -106,7 +105,6 @@ public class SongView extends VerticalLayout implements View {
             String year = txtYear.getValue();
 
             try {
-                //FALTA REALIZAR MAS VALIDACIONES
                 SongBusiness.CheckUrlCanNotOnlyContainsNumbers(url);
                 SongBusiness.CheckDuplicateUrl(url);
                 SongBusiness.CheckFieldOnlyContainsNumbers("Artista", artist);
@@ -117,12 +115,10 @@ public class SongView extends VerticalLayout implements View {
 
                 Song song = new Song(url, tittle, artist, album, genre, track, year);
                 SongBusiness.SaveSong(song);
-                Notification.show("Canción subida con éxito");
                 label.setValue("Canción subida con éxito");
                 label.setVisible(true);
             } catch (WebException webEx) {
                 System.out.println(webEx.getTechnicalMessage());
-                Notification.show(webEx.getUserMessage());
                 label.setValue(webEx.getUserMessage());
                 label.setVisible(true);
             }

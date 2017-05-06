@@ -25,6 +25,7 @@ public class ClientView extends VerticalLayout implements View {
     PasswordField txtPassword;
     TextField txtPhone;
     Button btnRegister;
+    Label label;
 
     @Autowired
     ClientBusiness clientBusiness;
@@ -54,8 +55,13 @@ public class ClientView extends VerticalLayout implements View {
         btnRegister = new Button("Registrar", this::registerButtonClick);
         btnRegister.addStyleName(ValoTheme.BUTTON_PRIMARY);
         btnRegister.setClickShortcut(KeyCode.ENTER);
+        btnRegister.setId("btnRegister");
 
-        VerticalLayout fields = new VerticalLayout(txtUser, txtNombre, txtEmail, txtPassword, txtPhone, btnRegister);
+        label = new Label();
+        label.setId("label");
+        label.setVisible(false);
+
+        VerticalLayout fields = new VerticalLayout(txtUser, txtNombre, txtEmail, txtPassword, txtPhone, btnRegister, label);
         fields.setCaption("Crear Cliente");
         fields.setComponentAlignment(btnRegister, Alignment.TOP_CENTER);
         fields.setSpacing(true);
@@ -80,7 +86,8 @@ public class ClientView extends VerticalLayout implements View {
     public void registerButtonClick(Button.ClickEvent e) {
 
         if (txtUser.isEmpty() || txtPassword.isEmpty() || txtNombre.isEmpty() || txtEmail.isEmpty() || txtPhone.isEmpty()) {
-            Notification.show("Ingrese los datos faltantes");
+            label.setValue("Ingrese los datos faltantes");
+            label.setVisible(true);
 
         } else {
             try {
@@ -103,7 +110,8 @@ public class ClientView extends VerticalLayout implements View {
 
                 Client client = new Client(user, password, name, email, phone);
                 clientBusiness.SaveClient(client);
-                Notification.show("Cliente registrado exitosamente");
+                label.setValue("Cliente registrado exitosamente");
+                label.setVisible(true);
 
             } catch (WebException webEx) {
                 System.out.println(webEx.getTechnicalMessage());
