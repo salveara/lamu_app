@@ -4,6 +4,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import java.util.concurrent.TimeUnit;
+
 public final class ChromeBrowser {
 
     private static ChromeDriver chromeDriver;
@@ -27,6 +29,7 @@ public final class ChromeBrowser {
             capabilities.setCapability("chrome.binary", CHROME_APPLICATION_RUTE);
             capabilities.setCapability(ChromeOptions.CAPABILITY, options);
             chromeDriver = new ChromeDriver(capabilities);
+            chromeDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         }
         return chromeDriver;
     }

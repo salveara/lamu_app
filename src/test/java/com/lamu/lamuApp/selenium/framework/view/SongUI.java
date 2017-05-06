@@ -14,7 +14,6 @@ public class SongUI {
         ChromeBrowser chromeBrowser = new ChromeBrowser();
         driver = chromeBrowser.getDriver();
         driver.get("http://localhost:8090/#!song");
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
     public void fillTittle(String tittle) {
