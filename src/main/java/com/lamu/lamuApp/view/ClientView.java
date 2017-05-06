@@ -103,10 +103,10 @@ public class ClientView extends VerticalLayout implements View {
                 clientBusiness.CheckEmail(email);
                 clientBusiness.CheckPassword(password);
                 clientBusiness.CheckUser(user);
+                clientBusiness.CheckUser(name);
                 clientBusiness.CheckPhone(phone);
                 clientBusiness.CheckDuplicateEmail(email);
                 clientBusiness.CheckDuplicateUser(user);
-
 
                 Client client = new Client(user, password, name, email, phone);
                 clientBusiness.SaveClient(client);
@@ -115,7 +115,8 @@ public class ClientView extends VerticalLayout implements View {
 
             } catch (WebException webEx) {
                 System.out.println(webEx.getTechnicalMessage());
-                Notification.show(webEx.getUserMessage());
+                label.setValue(webEx.getUserMessage());
+                label.setVisible(true);
             }
         }
     }

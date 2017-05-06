@@ -6,13 +6,13 @@ import org.junit.Test;
 
 public class AutenticationUITest {
 
-    @Before
-    public void init() {
-        AutenticationUI autenticationView = new AutenticationUI();
-    }
-
-    @Test
-    public void casoDePrueba1() {
-
-    }
+//    @Before
+//    public void init() {
+//        AutenticationUI autenticationView = new AutenticationUI();
+//    }
+//
+//    @Test
+//    public void casoDePrueba1() {
+//
+//    }
 }

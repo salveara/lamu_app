@@ -40,9 +40,19 @@ public class ClientBusiness {
     public void CheckUser(String user) throws WebException {
         if (user.length() < 3) {
             WebException webEx = new WebException();
-            webEx.setUserMessage("El usuario debe ser de minimo 3 caracteres");
+            webEx.setUserMessage("El usuario o su nombre debe ser de minimo 3 caracteres");
             webEx.setTechnicalMessage("user.lenght menor a 3 caracteres");
             throw webEx;
+        } else {
+            if (user != null && !"".equals(user)) {
+                String regex = "[0-9]+";
+                if (user.matches(regex)) {
+                    WebException webEx = new WebException();
+                    webEx.setUserMessage("El usuario o su nombre debe contener por lo menos una letra");
+                    webEx.setTechnicalMessage("Phone contains letters");
+                    throw webEx;
+                }
+            }
         }
     }
 
@@ -52,6 +62,17 @@ public class ClientBusiness {
             webEx.setUserMessage("Número de telefono no valido");
             webEx.setTechnicalMessage("phone.lenght menor a 7 caracteres");
             throw webEx;
+        } else {
+            if (phone != null && !"".equals(phone)) {
+                String regex = "[0-9]+";
+                if (!phone.matches(regex)) {
+                    WebException webEx = new WebException();
+                    webEx.setUserMessage("El telefono solo puede contener números");
+                    webEx.setTechnicalMessage("Phone contains letters");
+                    throw webEx;
+                }
+            }
+
         }
     }
 

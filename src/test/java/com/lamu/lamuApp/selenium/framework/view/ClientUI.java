@@ -37,8 +37,12 @@ public class ClientUI {
         driver.findElement(By.id("gwt-uid-13")).sendKeys(phone);
     }
 
-    public void uploadButtonClick() {
+    public void registerButtonClick() {
         driver.findElement(By.id("btnRegister")).click();
+    }
+
+    public String getResponseText() {
+        return driver.findElement(By.id("label")).getText();
     }
 
     public void closeDriver() {
