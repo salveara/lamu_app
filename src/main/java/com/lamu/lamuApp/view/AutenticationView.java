@@ -18,37 +18,39 @@ public class AutenticationView extends VerticalLayout implements View {
 
     public static final String VIEW_NAME = "";
 
-    TextField txtUser;
-    TextField txtClient;
+    TextField txtEmail;
     PasswordField txtPassword;
     Button btnLogin;
     Button btnPassword;
+    Label label;
 
     @Autowired
     AutenticationBusiness autenticationBusiness;
 
     @PostConstruct
     void init() {
-        txtUser = new TextField("Email:");
-        txtUser.setWidth("300px");
-        txtUser.setRequiredIndicatorVisible(true);
+        txtEmail = new TextField("Email:");
+        txtEmail.setWidth("300px");
+        txtEmail.setRequiredIndicatorVisible(true);
 
         txtPassword = new PasswordField("Contraseña:");
         txtPassword.setWidth("300px");
         txtPassword.setRequiredIndicatorVisible(true);
 
-        txtClient = new TextField("Empresa:");
-        txtClient.setWidth("300px");
-        txtClient.setRequiredIndicatorVisible(true);
-
         btnLogin = new Button("Login", this::loginButtonClick);
         btnLogin.addStyleName(ValoTheme.BUTTON_PRIMARY);
         btnLogin.setClickShortcut(KeyCode.ENTER);
+        btnLogin.setId("btnLogin");
 
         btnPassword = new NativeButton("¿Olvidó su contraseña?", this::passwordButtonClick);
         btnPassword.addStyleName(ValoTheme.BUTTON_PRIMARY);
+        btnPassword.setId("btnPassword");
 
-        VerticalLayout fields = new VerticalLayout(txtUser, txtPassword, txtClient, btnLogin, btnPassword);
+        label = new Label();
+        label.setId("label");
+        label.setVisible(false);
+
+        VerticalLayout fields = new VerticalLayout(txtEmail, txtPassword, btnLogin, btnPassword, label);
         fields.setCaption("Autenticación de Empleados");
         fields.setComponentAlignment(btnLogin, Alignment.TOP_CENTER);
         fields.setComponentAlignment(btnPassword, Alignment.TOP_CENTER);
@@ -76,16 +78,19 @@ public class AutenticationView extends VerticalLayout implements View {
     }
 
     public void loginButtonClick(Button.ClickEvent e) {
-        if (txtUser.isEmpty() || txtPassword.isEmpty() || txtClient.isEmpty()) {
-            Notification.show("Ingrese los datos requeridos");
+        if (txtEmail.isEmpty() || txtPassword.isEmpty()) {
+            label.setValue("Ingrese los datos requeridos");
+            label.setVisible(true);
         } else {
             try {
-                autenticationBusiness.checkData(txtUser.getValue(), txtPassword.getValue(), txtClient.getValue());
-                Notification.show("Autenticación correcta");
-                //getUI().getNavigator().navigateTo(ClientView.VIEW_NAME);
+                autenticationBusiness.CheckEmail(txtEmail.getValue());
+                autenticationBusiness.checkData(txtEmail.getValue(), txtPassword.getValue());
+                label.setValue("Autenticación correcta");
+                label.setVisible(true);
             } catch (WebException webEx) {
                 System.out.println(webEx.getTechnicalMessage());
-                Notification.show(webEx.getUserMessage());
+                label.setValue(webEx.getUserMessage());
+                label.setVisible(true);
             }
         }
     }

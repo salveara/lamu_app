@@ -35,14 +35,14 @@ public class AutenticationBusinessTest {
         Employee employeeBD = new Employee("Daisy J", "perrito3", "Daisy");
         employees.add(employeeBD);
         when(employeeDao.findByEmail(employee.getEmail())).thenReturn(employees);
-        autenticationBusiness.checkData(employee.getEmail(), employee.getPassword(), employee.getClient());
+        autenticationBusiness.checkData(employee.getEmail(), employee.getPassword());
     }
 
     @Test(expected = WebException.class)
     public void ifTheUseDoesNotExistThrowsError() throws WebException {
         List<Employee> employees = new ArrayList<>();
         when(employeeDao.findByEmail(employee.getEmail())).thenReturn(employees);
-        autenticationBusiness.checkData(employee.getEmail(), employee.getPassword(), employee.getClient());
+        autenticationBusiness.checkData(employee.getEmail(), employee.getPassword());
     }
 
 

@@ -38,7 +38,7 @@ public class PasswordMailView extends VerticalLayout implements View {
         txtClient.setWidth("300px");
         txtClient.setRequiredIndicatorVisible(true);
 
-        btnEnviar = new Button("Login", this::enviarButtonClick);
+        btnEnviar = new Button("Enviar", this::enviarButtonClick);
         btnEnviar.addStyleName(ValoTheme.BUTTON_PRIMARY);
         btnEnviar.setClickShortcut(ShortcutAction.KeyCode.ENTER);
 
