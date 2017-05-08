@@ -37,26 +37,33 @@ public class SongView extends VerticalLayout implements View {
         txtTittle = new TextField("Titulo:");
         txtTittle.setWidth("300px");
         txtTittle.setRequiredIndicatorVisible(true);
+        txtTittle.setId("txtTittleSong");
 
         txtUrl = new TextField("Url:");
         txtUrl.setWidth("300px");
         txtUrl.setRequiredIndicatorVisible(true);
+        txtUrl.setId("txtUrlSong");
 
         txtArtist = new TextField("Artista:");
         txtArtist.setWidth("300px");
         txtArtist.setRequiredIndicatorVisible(true);
+        txtArtist.setId("txtArtistSong");
 
         txtAlbum = new TextField("Album:");
         txtAlbum.setWidth("300px");
+        txtAlbum.setId("txtAlbumSong");
 
         txtGenre = new TextField("Genero:");
         txtGenre.setWidth("300px");
+        txtGenre.setId("txtGenreSong");
 
         txtTrack = new TextField("Track:");
         txtTrack.setWidth("300px");
+        txtTrack.setId("txtTrackSong");
 
         txtYear = new TextField("Año:");
         txtYear.setWidth("300px");
+        txtYear.setId("txtYearSong");
 
         btnUpload = new Button("Subir", this::uploadButtonClick);
         btnUpload.addStyleName(ValoTheme.BUTTON_PRIMARY);

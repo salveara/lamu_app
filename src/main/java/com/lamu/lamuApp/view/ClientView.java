@@ -35,22 +35,27 @@ public class ClientView extends VerticalLayout implements View {
         txtUser = new TextField("Usuario:");
         txtUser.setWidth("300px");
         txtUser.setRequiredIndicatorVisible(true);
+        txtUser.setId("txtUserClient");
 
         txtNombre = new TextField("Nombre:");
         txtNombre.setWidth("300px");
         txtNombre.setRequiredIndicatorVisible(true);
+        txtNombre.setId("txtNombreClient");
 
         txtEmail = new TextField("Correo electronico:");
         txtEmail.setWidth("300px");
         txtEmail.setRequiredIndicatorVisible(true);
+        txtEmail.setId("txtEmailClient");
 
         txtPassword = new PasswordField("Contraseña:");
         txtPassword.setWidth("300px");
         txtPassword.setRequiredIndicatorVisible(true);
+        txtPassword.setId("txtPasswordClient");
 
         txtPhone = new TextField("Telefono:");
         txtPhone.setWidth("300px");
         txtPhone.setRequiredIndicatorVisible(true);
+        txtPhone.setId("txtPhoneClient");
 
         btnRegister = new Button("Registrar", this::registerButtonClick);
         btnRegister.addStyleName(ValoTheme.BUTTON_PRIMARY);

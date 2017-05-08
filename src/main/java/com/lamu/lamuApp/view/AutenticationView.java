@@ -32,10 +32,12 @@ public class AutenticationView extends VerticalLayout implements View {
         txtEmail = new TextField("Email:");
         txtEmail.setWidth("300px");
         txtEmail.setRequiredIndicatorVisible(true);
+        txtEmail.setId("txtEmailAutentication");
 
         txtPassword = new PasswordField("Contraseña:");
         txtPassword.setWidth("300px");
         txtPassword.setRequiredIndicatorVisible(true);
+        txtPassword.setId("txtPasswordAutentication");
 
         btnLogin = new Button("Login", this::loginButtonClick);
         btnLogin.addStyleName(ValoTheme.BUTTON_PRIMARY);

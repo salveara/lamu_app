@@ -17,31 +17,31 @@ public class SongUI {
     }
 
     public void fillTittle(String tittle) {
-        driver.findElement(By.id("gwt-uid-5")).sendKeys(tittle);
+        driver.findElement(By.id("txtTittleSong")).sendKeys(tittle);
     }
 
     public void fillUrl(String url) {
-        driver.findElement(By.id("gwt-uid-7")).sendKeys(url);
+        driver.findElement(By.id("txtUrlSong")).sendKeys(url);
     }
 
     public void fillArtist(String artist) {
-        driver.findElement(By.id("gwt-uid-9")).sendKeys(artist);
+        driver.findElement(By.id("txtArtistSong")).sendKeys(artist);
     }
 
     public void fillAlbum(String album) {
-        driver.findElement(By.id("gwt-uid-11")).sendKeys(album);
+        driver.findElement(By.id("txtAlbumSong")).sendKeys(album);
     }
 
     public void fillGenre(String genre) {
-        driver.findElement(By.id("gwt-uid-13")).sendKeys(genre);
+        driver.findElement(By.id("txtGenreSong")).sendKeys(genre);
     }
 
     public void fillTrack(String track) {
-        driver.findElement(By.id("gwt-uid-15")).sendKeys(track);
+        driver.findElement(By.id("txtTrackSong")).sendKeys(track);
     }
 
     public void fillYear(String year) {
-        driver.findElement(By.id("gwt-uid-17")).sendKeys(year);
+        driver.findElement(By.id("txtYearSong")).sendKeys(year);
     }
 
     public void uploadButtonClick() {

@@ -15,11 +15,11 @@ public class AutenticationUI {
     }
 
     public void fillEmail(String email) {
-        driver.findElement(By.id("gwt-uid-5")).sendKeys(email);
+        driver.findElement(By.id("txtEmailAutentication")).sendKeys(email);
     }
 
     public void fillPassword(String password) {
-        driver.findElement(By.id("gwt-uid-7")).sendKeys(password);
+        driver.findElement(By.id("txtPasswordAutentication")).sendKeys(password);
     }
 
     public void uploadButtonLoginClick() {

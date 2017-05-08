@@ -15,23 +15,23 @@ public class ClientUI {
     }
 
     public void fillUser(String user) {
-        driver.findElement(By.id("gwt-uid-5")).sendKeys(user);
+        driver.findElement(By.id("txtUserClient")).sendKeys(user);
     }
 
     public void fillName(String name) {
-        driver.findElement(By.id("gwt-uid-7")).sendKeys(name);
+        driver.findElement(By.id("txtNombreClient")).sendKeys(name);
     }
 
     public void fillEmail(String email) {
-        driver.findElement(By.id("gwt-uid-9")).sendKeys(email);
+        driver.findElement(By.id("txtEmailClient")).sendKeys(email);
     }
 
     public void fillPassword(String password) {
-        driver.findElement(By.id("gwt-uid-11")).sendKeys(password);
+        driver.findElement(By.id("txtPasswordClient")).sendKeys(password);
     }
 
     public void fillPhone(String phone) {
-        driver.findElement(By.id("gwt-uid-13")).sendKeys(phone);
+        driver.findElement(By.id("txtPhoneClient")).sendKeys(phone);
     }
 
     public void registerButtonClick() {
